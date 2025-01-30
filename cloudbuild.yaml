@@ -4,18 +4,34 @@ steps:
     entrypoint: pip
     args: ['install', '-r', 'requirements.txt', '-t', '.']
     dir: '.'
+    id: 'install-dependencies'
 
   # Run tests
   - name: python:3.10
     entrypoint: python
     args: ['-m', 'pytest']
     dir: '.'
+    id: 'run-tests'
 
-  # Deploy infrastructure using Terraform
+  # Initialize Terraform
   - name: 'hashicorp/terraform:1.0.0'
     args: ['init']
-    dir: '../infrastructure'
+    dir: 'infrastructure'
+    id: 'tf-init'
 
+  # Plan Terraform changes
   - name: 'hashicorp/terraform:1.0.0'
-    args: ['apply', '-auto-approve']
-    dir: '../infrastructure'
+    args: ['plan', '-var-file=terraform.tfvars']
+    dir: 'infrastructure'
+    id: 'tf-plan'
+
+  # Apply Terraform changes
+  - name: 'hashicorp/terraform:1.0.0'
+    args: ['apply', '-auto-approve', '-var-file=terraform.tfvars']
+    dir: 'infrastructure'
+    id: 'tf-apply'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+timeout: '1800s' # Set timeout to 30 minutes
