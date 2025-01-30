@@ -2,9 +2,13 @@ from google.cloud import firestore
 from flask import jsonify
 import functions_framework
 from flask_cors import CORS
+import datetime
 
 # Initialize Firestore client
 db = firestore.Client()
+
+app = functions_framework.Flask(__name__)
+CORS(app)
 
 @functions_framework.http
 def visitor_count(request):
@@ -55,3 +59,8 @@ def visitor_count(request):
         return jsonify({'count': count}), 200, headers
     except Exception as e:
         return jsonify({'error': str(e)}), 500, headers
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    """Health check endpoint to verify the service is running."""
+    return jsonify({'status': 'healthy', 'timestamp': datetime.datetime.utcnow().isoformat()}), 200
