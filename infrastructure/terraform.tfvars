@@ -1,0 +1,7 @@
+project_id         = "cloud-resume-challenge-2025"
+region            = "us-central1"
+zone              = "us-central1-a"
+storage_location  = "US"
+domain_name       = "2025.web.app"
+github_owner      = "MikeDominic92"
+github_repo       = "cloud-resume-backend"
