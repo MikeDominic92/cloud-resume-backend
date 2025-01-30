@@ -1,0 +1,21 @@
+steps:
+  # Install dependencies
+  - name: python:3.10
+    entrypoint: pip
+    args: ['install', '-r', 'requirements.txt', '-t', '.']
+    dir: '.'
+
+  # Run tests
+  - name: python:3.10
+    entrypoint: python
+    args: ['-m', 'pytest']
+    dir: '.'
+
+  # Deploy infrastructure using Terraform
+  - name: 'hashicorp/terraform:1.0.0'
+    args: ['init']
+    dir: '../infrastructure'
+
+  - name: 'hashicorp/terraform:1.0.0'
+    args: ['apply', '-auto-approve']
+    dir: '../infrastructure'

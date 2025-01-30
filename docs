@@ -1,0 +1,122 @@
+# Cloud Resume Challenge - Setup Guide
+
+## Project Setup Progress
+
+### 1. Initial Setup (Completed)
+- [x] Created project directory structure
+- [x] Initialized Git repository
+- [x] Created basic HTML resume
+- [x] Added CSS styling
+- [x] Created JavaScript for visitor counter
+- [x] Set up Python backend code
+- [x] Created Terraform configurations
+
+### 2. Development Environment Setup (Completed)
+- [x] Installed Terraform v1.10.5
+  ```powershell
+  # Steps performed:
+  1. Downloaded terraform_1.10.5_windows_amd64.zip
+  2. Created C:\terraform directory
+  3. Extracted terraform.exe to C:\terraform
+  4. Added C:\terraform to PATH
+  ```
+- [x] Verified Terraform installation
+  ```powershell
+  terraform --version  # Outputs: Terraform v1.10.5 on windows_amd64
+  ```
+
+### 3. Google Cloud Setup (In Progress)
+- [x] Created GCP project: `cloud-resume-challenge-2025`
+- [x] Set default project
+  ```powershell
+  gcloud config set project cloud-resume-challenge-2025
+  ```
+- [x] Linked billing account
+  ```powershell
+  gcloud beta billing projects link cloud-resume-challenge-2025 --billing-account=01550F-29A1EB-A4D99C
+  ```
+- [ ] Enable required APIs:
+  - cloudfunctions.googleapis.com
+  - cloudbuild.googleapis.com
+  - firestore.googleapis.com
+  - compute.googleapis.com
+  - run.googleapis.com
+
+### 4. Infrastructure Deployment (Pending)
+- [ ] Initialize Terraform
+- [ ] Create GCS bucket for static website
+- [ ] Set up Cloud Functions
+- [ ] Configure Firestore database
+- [ ] Set up Load Balancer and SSL
+- [ ] Configure Cloud CDN
+
+### 5. Domain and DNS (Pending)
+- [ ] Purchase domain name
+- [ ] Configure DNS settings
+- [ ] Set up SSL certificate
+
+### 6. CI/CD Setup (Pending)
+- [ ] Create GitHub repositories
+  - Frontend repository
+  - Backend repository
+- [ ] Set up Cloud Build triggers
+- [ ] Configure automated deployments
+
+### 7. Testing (Pending)
+- [ ] Run Python backend tests
+- [ ] Test frontend functionality
+- [ ] Verify visitor counter
+- [ ] Test HTTPS and CDN
+- [ ] Validate CI/CD pipelines
+
+### 8. Documentation and Blog (Pending)
+- [ ] Complete setup documentation
+- [ ] Write blog post about the experience
+- [ ] Update resume with project details
+
+## Cost Estimates
+- Cloud Storage: Minimal cost (free tier available)
+- Cloud Functions: Free tier includes 2 million invocations
+- Firestore: Free tier includes 1GB storage and 50K reads/writes
+- Load Balancer: ~$18/month (main cost component)
+- Cloud CDN: Pay per use, minimal for small sites
+- Domain Name: ~$12/year
+
+## Security Considerations
+- HTTPS enabled via Cloud Load Balancer
+- Secure API endpoints with proper CORS configuration
+- No credentials in source control
+- Minimal IAM permissions for services
+
+## Next Steps
+1. Enable required GCP APIs
+2. Initialize and apply Terraform configuration
+3. Purchase domain name
+4. Set up GitHub repositories
+5. Configure CI/CD pipelines
+
+## Useful Commands
+```powershell
+# Check GCP project configuration
+gcloud config list
+
+# List billing accounts
+gcloud beta billing accounts list
+
+# Enable GCP APIs
+gcloud services enable [API_NAME]
+
+# Initialize Terraform
+terraform init
+
+# Plan Terraform changes
+terraform plan
+
+# Apply Terraform changes
+terraform apply
+```
+
+## Resources
+- [Terraform Documentation](https://developer.hashicorp.com/terraform/docs)
+- [Google Cloud Documentation](https://cloud.google.com/docs)
+- [Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/googlecloud/)

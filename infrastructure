@@ -1,0 +1,15 @@
+variable "project_id" {
+  description = "The ID of the GCP project"
+  type        = string
+}
+
+variable "region" {
+  description = "The region to deploy resources to"
+  type        = string
+  default     = "us-central1"
+}
+
+variable "website_domain_name" {
+  description = "The domain name for the website"
+  type        = string
+}
